@@ -1,0 +1,16 @@
+[Unit]
+Description=Airflow Scheduler
+After=network.target
+
+[Service]
+User=ddi
+Group=ddi
+Environment="AIRFLOW_HOME=/home/ddi/airflow"
+Environment="PATH=/home/ddi/.local/bin:/usr/bin:/bin"
+ExecStart=/home/ddi/.local/bin/airflow scheduler
+Restart=always
+RestartSec=5
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

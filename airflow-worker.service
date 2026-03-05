@@ -1,0 +1,14 @@
+[Unit]
+Description=Airflow Celery Worker
+After=network.target redis.service
+
+[Service]
+User=ddi
+Group=ddi
+Environment="AIRFLOW_HOME=/home/ddi/airflow"
+ExecStart=/home/ddi/.local/bin/airflow celery worker --concurrency 8
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
